@@ -1,4 +1,5 @@
-AWSTemplateFormatVersion: '2010-09-09'
+access token 167058dde5d25e70466bb9dffe4f2e923c49d453
+WSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
 Resources:
@@ -62,10 +63,10 @@ Resources:
     Type: AWS::Serverless::SimpleTable
     Properties:
       TableName: FeedbackServerlessSinatraTable
-      PrimaryKey: 
+      PrimaryKey:
         Name: id
         Type: String
-      ProvisionedThroughput: 
+      ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
 Outputs:

@@ -8,7 +8,6 @@ gem 'rake'
 gem 'rubysl-base64'
 gem 'sinatra-activerecord'
 gem 'mysql'
-gem 'rake'
 
 group :test do
   gem 'rspec'
