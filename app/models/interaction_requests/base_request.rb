@@ -1,26 +1,35 @@
-require 'json'
+require 'pry'
 
+class BaseRequest
 
-class BaseRequest < ActiveRecord::Base
-  attr_reader :parsed_interaction
+  attr_reader :interaction
 
-  def initialize(interaction_request)
-    @parsed_interaction = JSON.parse(interaction_request)
+  def initialize(interaction)
+    @interaction = interaction
   end
 
-  def interaction_name
-    parsed_interaction['name']
+  def interaction_request
+    interaction['request']
   end
 
   def interaction_type
-    parsed_interaction['type']
+    interaction_request['type']
   end
 
-  def interaction_slots
-    parsed_interaction['slots']
+  def session
+    interaction['session']
   end
 
-  def confirmation_status
-    parsed_interaction['confirmationStatus']
+  #includes user and skill id data
+  def application
+    session['application']
+  end
+
+  def skill_id
+    application['applicationId']
+  end
+
+  def skill_name
+    $SKILL_MAPPING[skill_id]
   end
 end

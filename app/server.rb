@@ -1,14 +1,27 @@
-require 'sinatra'
-require 'aws-record'
+require 'json'
+require 'pry'
 
-before do
-  if request.body.size > 0
-    request.body.rewind
-    @params = Sinatra::IndifferentHash.new
-    @params.merge!(JSON.parse(request.body.read))
+class AlexaSkillApp < Sinatra::Base
+
+set :app_file, __FILE__
+
+  configure do
+    set :skill_mapping, YAML.load(open('../data/skill_mapping.yaml'))
   end
-end
 
-get '/' do
-  Interaction.new(@params)
+  before do
+    if request.body.size > 0
+      request.body.rewind
+      @params = Sinatra::IndifferentHash.new
+      @params.merge!(JSON.parse(request.body.read))
+    end
+  end
+
+  post '/' do
+    Interaction.new(test).determine_interaction
+  end
+
+  def test
+    File.read("#{settings.root}/spec/captured_alexa_requests/intent_request_one_slot.json")
+  end
 end
