@@ -2,3 +2,5 @@
 .ruby-version
 *.yaml
 *.ru
+*.json
+.DS_Store
