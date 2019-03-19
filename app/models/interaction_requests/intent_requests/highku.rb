@@ -1,16 +1,17 @@
 require 'pry'
-require_relative '../base_request.rb'
+require_relative 'intent_request.rb'
 
 module HighKu
-  class SpecifiedSeedWordIntent < BaseRequest
-
-    def initialize(interaction_request)
-      super
+  class Intents
+    def initialize
+      @wikipedia_connection ||= WikipediaService.new
     end
-
-    def respond!
-      binding.pry
-      puts "sardsdd"
+    class SpecifiedSeedWordIntent
+      #This class will use helpers to build a coherent haiku
+      
+      def prepare_response
+        parsed_wiki_page = @wikipedia_connection.retrieve_page!(seed_word)
+      end
     end
   end
 end

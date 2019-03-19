@@ -5,10 +5,6 @@ class AlexaSkillApp < Sinatra::Base
 
 set :app_file, __FILE__
 
-  configure do
-    set :skill_mapping, YAML.load(open('../data/skill_mapping.yaml'))
-  end
-
   before do
     if request.body.size > 0
       request.body.rewind

@@ -1,5 +1,6 @@
 require 'json'
 require 'pry'
+
 class Interaction
 
   TYPES = ["LaunchRequest", "IntentRequest", "SessionEndedRequest" ].freeze
