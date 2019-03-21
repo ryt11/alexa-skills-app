@@ -1,4 +1,4 @@
-class RequestInteractor
+class HttpRequestInteractor
 
   class Abstract
   def initialize(object)
@@ -13,8 +13,8 @@ class RequestInteractor
     result
   end
 
-  def after
-    # whatever
+  def afterxxxx
+    # whatevercjcjcjd
   end
 end
 

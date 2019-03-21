@@ -10,7 +10,7 @@ class BaseService
     JSON.parse(response)
   end
 
-  def self.http_request!()
-    ss
+  def send!(verb, uri)
+    Faraday.send(verb, uri)
   end
 end

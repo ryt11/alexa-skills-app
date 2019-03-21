@@ -1,7 +1,4 @@
-require_relative 'highku.rb'
-require_relative '../base_request.rb'
 require 'pry'
-
 
 class IntentRequest < BaseRequest
 
@@ -9,8 +6,16 @@ class IntentRequest < BaseRequest
     super
   end
 
+  def intent
+    interaction_request['intent']
+  end
+
   def intent_name
-    interaction_request['intent']['name']
+    intent['name']
+  end
+
+  def slots
+    intent['slots']
   end
 
   def request_class
@@ -24,7 +29,7 @@ class IntentRequest < BaseRequest
 
   def process_response!
     self.class.send :include, identify_constant(skill_name)
-    request_class.new(interaction_request).prepare_response
+    request_class.new(self).prepare_response
   end
 
 end

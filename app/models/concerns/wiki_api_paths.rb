@@ -2,14 +2,23 @@ module WikiApiPaths
 
   DEFAULT_FORMAT = 'json'.freeze
   DEFAULT_HTTP_VERB = :get
-  #This service only utilizes get verbs to fetch content
+  BASE_PATH = 'https://en.wikipedia.org/w/api.php'
+  MAX_CHARS = '500'
+  EXTRACT_LIMIT = '10'
 
-    def self.content_fetch(page: ,format:)
+  class Page
+    def self.content_fetch(page, format=nil)
       {
-        action: 'parse',
-        prop: 'text',
+        action: 'query',
+        prop: 'revisions',
+        rvprop: 'content',
         format: format || DEFAULT_FORMAT,
-        page: page
+        titles: page,
+        exchars: MAX_CHARS,
+        exintro: 'true',
+        exlimit: EXTRACT_LIMIT,
+        redirects: nil
       }
+    end
   end
 end

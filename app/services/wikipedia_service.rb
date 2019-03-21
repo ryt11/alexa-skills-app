@@ -1,25 +1,25 @@
 require 'json'
-
+require 'pry'
 class WikipediaService < BaseService
   #when calling method including connection use httprequestinteractor
   #class to immediately forward
   include WikiApiPaths
 
+  attr_reader :base_connection
+
   def initialize
-    @base_connection = Faraday.new("https://en.wikipedia.org/w/api.php")
+    @base_connection = Faraday.new(WikiApiPaths::BASE_PATH)
   end
 
-  def page_connection(page_name:, extended_url_path:)
+  def page_connection(page_name, extended_url_path=nil)
       params = WikiApiPaths::Page.content_fetch(page_name)
-      base_connection.build_url(extended_url_path || nil, params )
+      base_connection.build_url(extended_url_path, params )
   end
 
   def retrieve_page!(page_name)
-    response = page_connection.send(WikiApiPaths::DEFAULT_HTTP_VERB)
+    uri = page_connection(page_name)
+    binding.pry
+    response = send!(WikiApiPaths::DEFAULT_HTTP_VERB, uri)
     parse(response.body)
-    #TODO: Error handling for http responses
   end
-
-  #use exclamation to signify action methods which will have callback
-  #t forward httpconnection and parse response using httprequestinteractor class
 end
