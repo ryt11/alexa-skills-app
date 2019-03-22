@@ -1,6 +1,8 @@
 .ruby-gemset
 .ruby-version
 *.yaml
+*.yml
 *.ru
 *.json
+*.scratch
 .DS_Store

@@ -6,10 +6,17 @@ gem 'rack'
 gem 'rack-contrib'
 gem 'rake'
 gem 'rubysl-base64'
-gem 'sinatra-activerecord'
-gem 'mysql'
+gem 'faraday'
+
+
+
 
 group :test do
   gem 'rspec'
   gem 'rack-test'
+end
+
+group :development, :test do
+  gem 'tux'
+  gem 'pry-byebug'
 end

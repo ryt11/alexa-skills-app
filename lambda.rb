@@ -23,7 +23,7 @@ $app ||= Rack::Builder.parse_file("#{__dir__}/app/config.ru").first
 
 def handler(event:, context:)
   # Check if the body is base64 encoded. If it is, try to decode it
-  body = 
+  body =
     if event['isBase64Encoded']
       Base64.decode64(event['body'])
     else
