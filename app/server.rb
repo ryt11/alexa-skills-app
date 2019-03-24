@@ -3,6 +3,8 @@ require 'pry'
 
 class AlexaSkillApp < Sinatra::Base
 
+include AlexaSkills
+
 set :app_file, __FILE__
 
   before do
@@ -14,10 +16,8 @@ set :app_file, __FILE__
   end
 
   post '/' do
-    Interaction.new(test).determine_interaction
+    AlexaSkills.interact!
   end
 
-  def test
-    File.read("#{settings.root}/spec/captured_alexa_requests/intent_request_one_slot.json")
-  end
+
 end

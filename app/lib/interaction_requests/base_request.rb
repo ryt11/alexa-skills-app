@@ -31,10 +31,6 @@ class BaseRequest
     application['applicationId']
   end
 
-  def identify_constant(constant_name)
-    Kernel.const_get(constant_name) if Kernel.const_defined?(constant_name)
-  end
-
   def skill_name
     $SKILL_MAPPING[skill_id]
   end
