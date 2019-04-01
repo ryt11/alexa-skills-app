@@ -9,13 +9,9 @@ module AlexaSkills::HighKu
     end
 
 
-    class SpecifiedSeedWordIntent
+    class SpecifiedSeedWordIntent < Intent
 
       SLOT_NAME = "SeedWord".freeze
-
-      def initialize(origin_request)
-        super
-      end
 
       def slot_data
         @slot_data ||= @origin_request.slots[SLOT_NAME]
@@ -34,11 +30,14 @@ module AlexaSkills::HighKu
       end
 
       def fetch_wiki_response
-        @wikipedia_connection.retrieve_page!(seed_word)
+        @wikipedia_connection.return_page_data!(seed_word)
       end
 
       def process_response!
         wiki_response = fetch_wiki_response
+        page_title = wiki_response[:title]
+        parsed_page_content = html_parse(wiki_response[:content]).at('body').inner_text
+        binding.pry
         #classes that will strip/sanitize html, this could be added as a class method
         # at HighKu level or into a module.
         #classes to utilize syllable counting gems

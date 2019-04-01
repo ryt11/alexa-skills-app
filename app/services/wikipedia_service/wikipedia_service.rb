@@ -1,5 +1,6 @@
 require 'json'
-require 'pry'
+require_relative '../base_service.rb'
+
 class WikipediaService < BaseService
   #when calling method including connection use httprequestinteractor
   #class to immediately forward
@@ -16,10 +17,14 @@ class WikipediaService < BaseService
       base_connection.build_url(extended_url_path, params )
   end
 
-  def retrieve_page!(page_name)
+  def parse_page(response_body)
+    parse(response_body)['query']['pages']
+  end
+
+  def return_page_data!(page_name)
     uri = page_connection(page_name)
-    binding.pry
     response = send!(WikiApiPaths::DEFAULT_HTTP_VERB, uri)
-    parse(response.body)
+    parsed = parse_page(response.body)
+    WikipediaPage.new(parsed).encompassed_data
   end
 end

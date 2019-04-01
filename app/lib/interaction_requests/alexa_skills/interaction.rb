@@ -26,7 +26,8 @@ module AlexaSkills
 
       const_suffix = "#{skill_name}::#{type_class}::#{intent_name}"
 
-      PARENT_MODULE.const_get(const_suffix)
+      intent_class = PARENT_MODULE.const_get(const_suffix)
+      intent_class.new(intent_request)
     end
 
     def launch

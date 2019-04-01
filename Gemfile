@@ -7,6 +7,7 @@ gem 'rack-contrib'
 gem 'rake'
 gem 'rubysl-base64'
 gem 'faraday'
+gem 'nokogiri'
 
 
 

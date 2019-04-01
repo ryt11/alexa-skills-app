@@ -1,11 +1,8 @@
 require 'pry'
-class HtmlParser
 
-  class << self
-    def parse!(html_blob)
-      doc = Nokogiri::HTML(html_blob)
-      binding.pry
-    end
+module HtmlParser
+
+  def html_parse(html_blob)
+    doc = Nokogiri::HTML(html_blob)
   end
-
 end
