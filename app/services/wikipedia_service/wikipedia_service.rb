@@ -12,8 +12,8 @@ class WikipediaService < BaseService
     @base_connection = Faraday.new(WikiApiPaths::BASE_PATH)
   end
 
-  def page_connection(page_name, extended_url_path=nil)
-      params = WikiApiPaths::Page.content_fetch(page_name)
+  def page_connection(title_name, extended_url_path=nil)
+      params = WikiApiPaths::Page.content_fetch(title_name)
       base_connection.build_url(extended_url_path, params )
   end
 
@@ -21,8 +21,8 @@ class WikipediaService < BaseService
     parse(response_body)['query']['pages']
   end
 
-  def return_page_data!(page_name)
-    uri = page_connection(page_name)
+  def return_page_data!(title_name)
+    uri = page_connection(title_name)
     response = send!(WikiApiPaths::DEFAULT_HTTP_VERB, uri)
     parsed = parse_page(response.body)
     WikipediaPage.new(parsed).encompassed_data

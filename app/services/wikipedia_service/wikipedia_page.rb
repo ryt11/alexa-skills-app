@@ -8,7 +8,7 @@ class WikipediaPage
   end
 
   def content
-    page_data['revisions'].first['*']
+    page_data['extract']
   end
 
   def title

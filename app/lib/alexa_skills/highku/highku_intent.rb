@@ -1,4 +1,5 @@
 require_relative 'highku.rb'
+require_relative '../../concerns/html_parser.rb'
 
 module AlexaSkills::HighKu
   class Intent
@@ -36,8 +37,6 @@ module AlexaSkills::HighKu
       def process_response!
         wiki_response = fetch_wiki_response
         page_title = wiki_response[:title]
-        parsed_page_content = html_parse(wiki_response[:content]).at('body').inner_text
-        binding.pry
         #classes that will strip/sanitize html, this could be added as a class method
         # at HighKu level or into a module.
         #classes to utilize syllable counting gems

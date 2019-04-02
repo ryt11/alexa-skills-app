@@ -1,24 +1,35 @@
 module WikiApiPaths
 
-  DEFAULT_FORMAT = 'json'.freeze
-  DEFAULT_HTTP_VERB = :get
-  BASE_PATH = 'https://en.wikipedia.org/w/api.php'
-  MAX_CHARS = '500'
-  EXTRACT_LIMIT = '10'
+DEFAULT_HTTP_VERB = :get
+
+BASE_PATH = 'https://en.wikipedia.org/w/api.php'
+
+WIKI_PAGE_PARAMS =
+
+{
+    action: 'query',
+    prop: 'extracts',
+    format: 'json',
+    exchars: '1200',
+    exintro: 'true',
+    exlimit: '1',
+    explaintext:  nil,
+    redirects: nil
+
+  }
 
   class Page
-    def self.content_fetch(page, format=nil)
-      {
-        action: 'query',
-        prop: 'revisions',
-        rvprop: 'content',
-        format: format || DEFAULT_FORMAT,
-        titles: page,
-        exchars: MAX_CHARS,
-        exintro: 'true',
-        exlimit: EXTRACT_LIMIT,
-        redirects: nil
-      }
+    class << self
+
+      def titles_param(page)
+        {
+          titles: page
+         }
+      end
+
+      def content_fetch(page)
+        WIKI_PAGE_PARAMS.merge!(titles_param(page))
+      end
     end
   end
 end
