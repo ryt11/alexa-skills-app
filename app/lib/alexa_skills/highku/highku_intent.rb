@@ -37,10 +37,11 @@ module AlexaSkills::HighKu
         wiki_response = fetch_wiki_response
         page_title = wiki_response[:title]
         content = wiki_response[:content]
-        sc = AlexaSkills::HighKu::SyllableCounter.new(content)
+        
+        sc = SyllableCounter.new(content)
         binding.pry
 
-        
+
         #necessary sanitazation?
         #classes to utilize syllable counting gems
         #classes to utilize csg
