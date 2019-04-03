@@ -1,3 +1,5 @@
+require_relative 'highku.rb'
+
 module AlexaSkills::HighKu
 
   class SyllableCounter
@@ -8,7 +10,7 @@ module AlexaSkills::HighKu
     attr_reader :word_list
 
     def initialize(text)
-      @syllable_map = Hash.new(0)
+      @syllable_map = SyllableMap.new
       #remove non-alphanumeric characters, excluding spaces
       @text = text.downcase.gsub!(/[^a-z0-9\s]/i, '')
       @word_list = @text.split
@@ -39,7 +41,6 @@ module AlexaSkills::HighKu
 
         VOWELS.each do |v|
           if v == letter
-            binding.pry
             num_vowels += 1 unless last_was_vowel
             found_vowel, last_was_vowel = true
             break

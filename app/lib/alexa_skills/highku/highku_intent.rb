@@ -37,7 +37,7 @@ module AlexaSkills::HighKu
         wiki_response = fetch_wiki_response
         page_title = wiki_response[:title]
         content = wiki_response[:content]
-        
+
         sc = SyllableCounter.new(content)
         binding.pry
 
