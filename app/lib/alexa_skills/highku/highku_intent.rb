@@ -39,6 +39,7 @@ module AlexaSkills::HighKu
         content = wiki_response[:content]
 
         sc = SyllableCounter.new(content)
+        x = sc.count_syllables('sobriquet')
         binding.pry
 
 

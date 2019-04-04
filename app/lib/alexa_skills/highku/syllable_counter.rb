@@ -32,23 +32,38 @@ module AlexaSkills::HighKu
       end
     end
 
+
+    #when iterating through word, search ahead with index to see if there are
+    #two vowels in a row. If so, then add one syllable and skip the next letter by increasing
+    #index words like inadequate
+
+    #review entire algorithm
+
     def count_syllables(word)
+      vowel_count = count_vowels(word)
+      vowel_count -= 1 if negate_silent?(word)
+      vowel_count
+    end
+
+
+    def count_vowels(word)
       num_vowels = 0
       last_was_vowel = false
       found_vowel = false
 
-      word.chars.each do |letter|
 
+      word.chars.each do |letter|
+        last_was_vowel = found_vowel
         VOWELS.each do |v|
           if v == letter
-            num_vowels += 1 unless last_was_vowel
-            found_vowel, last_was_vowel = true
+            num_vowels += 1 if !last_was_vowel
+            found_vowel = true
             break
           end
-          last_was_vowel = false unless found_vowel
+          found_vowel = false
         end
       end
-      num_vowels -= 1 if negate_silent?(word)
+
       num_vowels
     end
   end

@@ -12,7 +12,7 @@ module AlexaSkills::HighKu
     end
 
     def syllable_search(syllable_count)
-      select { |word, syllables| sylabbles == syllable_count}
+      select { |word, syllables| syllables == syllable_count}
     end
   end
 end
