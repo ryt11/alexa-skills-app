@@ -7,10 +7,8 @@ gem 'rack-contrib'
 gem 'rake'
 gem 'rubysl-base64'
 gem 'faraday'
-gem 'nokogiri'
-
-
-
+gem 'syllabize', '~> 0.8.0'
+gem 'numbers_and_words'
 
 group :test do
   gem 'rspec'

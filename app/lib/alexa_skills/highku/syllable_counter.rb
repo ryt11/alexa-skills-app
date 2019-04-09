@@ -56,7 +56,7 @@ module AlexaSkills::HighKu
         last_was_vowel = found_vowel
         VOWELS.each do |v|
           if v == letter
-            num_vowels += 1 if !last_was_vowel
+            num_vowels += 1 unless last_was_vowel
             found_vowel = true
             break
           end
