@@ -7,6 +7,12 @@ module AlexaSkills::HighKu
     EXEMPT_VOWEL_COMBINATIONS = ['ia' ].freeze
     NEGATION_ENDINGS = ['es', 'e'].freeze
 
+    class << self
+      def generate_syllable_map(text)
+        new(text).populate_syllable_map
+      end
+    end
+
     attr_accessor :syllable_map
     attr_reader :word_list
 
@@ -56,6 +62,7 @@ module AlexaSkills::HighKu
         syllables = one_syllable?(word) ? 1 : count_syllables(word)
         syllable_map[word] = syllables
       end
+      syllable_map
     end
 
     def count_syllables(word)

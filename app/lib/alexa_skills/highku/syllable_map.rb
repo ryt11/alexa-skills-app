@@ -8,8 +8,12 @@ module AlexaSkills::HighKu
       keys
     end
 
-    def syllable_search(syllable_count)
-      select { |word, syllables| syllables == syllable_count}
+    def syllable_search(syllable_count, exact: false)
+       if exact
+         select { |word, syllables| syllables == syllable_count}
+       else
+         select { |word, syllables| syllables <= syllable_count}
+       end
     end
   end
 end

@@ -38,10 +38,21 @@ module AlexaSkills::HighKu
         page_title = wiki_response[:title]
         content = wiki_response[:content]
 
+        CoherentHaiku.generate!(content)
+
         sc = SyllableCounter.new(content)
         x = sc.count_syllables('sobriquet')
         #counting syllables with about 90% accuracy fuck english
-      
+        #Class to use SyllableCounter to build 5|7|5 lines.
+        #line class with syllable max as arg
+        #once a line is created, there maybe some coherent sentence generator work
+        #to ensure it makes some kind of sense
+        #use markov chains to determine most likely next word, and search for needed syllable completion.
+        #If nothing is found use a new word.
+        #CoherentHaiku uses SyllableCounter to obtain map of words along with syllable count.
+        #uses unmade MarkovChain to return hash with each word and their likely next follower(s)
+        #uses line class to create each line in CoherentHaiku
+
       end
     end
   end
