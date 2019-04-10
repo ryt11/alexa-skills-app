@@ -2,10 +2,7 @@ require_relative 'highku.rb'
 
 
 module AlexaSkills::HighKu
-
-
   class SyllableMap < Hash
-
 
     def words
       keys

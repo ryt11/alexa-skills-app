@@ -40,17 +40,8 @@ module AlexaSkills::HighKu
 
         sc = SyllableCounter.new(content)
         x = sc.count_syllables('sobriquet')
-        binding.pry
-
-
-        #necessary sanitazation?
-        #classes to utilize syllable counting gems
-        #classes to utilize csg
-        #class to join the two. CoherentHaiku
-        # each instance of Intent::SpecifiedSeedWordIntent should have a memoized
-        # wiki connection to access, or any class instantiated under ::Intent
-        #includes: syllable counting, coherent sentence generator, and calls to
-        # existing wiki service
+        #counting syllables with about 90% accuracy fuck english
+      
       end
     end
   end
